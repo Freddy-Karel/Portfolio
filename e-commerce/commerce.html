@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore - Présentation du Projet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .book-card {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: rgba(79, 70, 229, 0.1);
+            color: #564cdd;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-book-open text-indigo-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">Bookstore</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#presentation" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Présentation</a>
+                    <a href="#features" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Fonctionnalités</a>
+                    <a href="#tech" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Technologie</a>
+                    <a href="#structure" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Structure</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#presentation" class="text-gray-900 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Présentation</a>
+                <a href="#features" class="text-gray-900 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Fonctionnalités</a>
+                <a href="#tech" class="text-gray-900 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Technologie</a>
+                <a href="#structure" class="text-gray-900 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Structure</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-indigo-700 text-white py-20 animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 delay-100 animate-fade-in">Bookstore</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto delay-200 animate-fade-in">Votre librairie en ligne moderne avec une expérience utilisateur optimisée</p>
+            <div class="delay-300 animate-fade-in">
+                <a href="#presentation" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-50 transition duration-300">
+                    Découvrir le projet
+                    <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Presentation Section -->
+    <section id="presentation" class="py-16 bg-white animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl delay-100 animate-fade-in">
+                    Présentation du Site E-Commerce
+                </h2>
+                <div class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto delay-200 animate-fade-in">
+                    Bookstore est une plateforme de vente en ligne de livres développée avec une approche moderne et professionnelle.
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="delay-300 animate-fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">🎯 Objectif du site</h3>
+                    <p class="text-gray-600 mb-6">
+                        Bookstore permet aux utilisateurs de découvrir, rechercher et acheter des livres en ligne avec une expérience fluide et intuitive.
+                    </p>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Parcourir des livres par catégories</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Recherche avancée de livres</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Gestion complète du panier et commandes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Espace administrateur performant</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="delay-400 animate-fade-in">
+                    <div class="bg-gray-100 rounded-xl p-4 shadow-lg">
+                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                            <!-- Placeholder for your image -->
+                            <div>
+                                  <img src="./images/Capture d’écran 2025-03-13 140529.png" 
+     alt="Interface Bookstore" 
+     class="w-full rounded-lg mt-6 zoom-in">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-50 animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl delay-100 animate-fade-in">
+                    Fonctionnalités principales
+                </h2>
+                <div class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto delay-200 animate-fade-in">
+                    Une plateforme complète avec des fonctionnalités riches pour les clients et les administrateurs.
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="delay-300 animate-fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <span class="bg-green-100 text-green-800 text-sm font-semibold mr-3 px-3 py-1 rounded-full">Clients</span>
+                        Fonctionnalités utilisateurs
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-8 w-8 rounded-md bg-indigo-500 text-white">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Accueil dynamique</h4>
+                                <p class="mt-1 text-gray-500">Livres en vedette et suggestions personnalisées</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-8 w-8 rounded-md bg-indigo-500 text-white">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Recherche avancée</h4>
+                                <p class="mt-1 text-gray-500">Par titre, auteur ou catégorie</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-8 w-8 rounded-md bg-indigo-500 text-white">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Gestion du panier</h4>
+                                <p class="mt-1 text-gray-500">Ajout, modification et suppression d'articles</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-8 w-8 rounded-md bg-indigo-500 text-white">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Espace sécurisé</h4>
+                                <p class="mt-1 text-gray-500">Inscription, connexion et historique des commandes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="delay-400 animate-fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-3 px-3 py-1 rounded-full">Admin</span>
+                        Fonctionnalités administrateur
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-8 w-8 rounded-md bg-indigo-500 text-white">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Tableau de bord</h4>
+                                <p class="mt-1 text-gray-500">Vue d'ensemble des activités du site</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-8 w-8 rounded-md bg-indigo-500 text-white">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Gestion des livres</h4>
+                                <p class="mt-1 text-gray-500">Ajout, modification et suppression</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-8 w-8 rounded-md bg-indigo-500 text-white">
+                                    <i class="fas fa-clipboard-list"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Gestion des commandes</h4>
+                                <p class="mt-1 text-gray-500">Suivi et validation des commandes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-8 w-8 rounded-md bg-indigo-500 text-white">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Gestion des clients</h4>
+                                <p class="mt-1 text-gray-500">Modération des comptes utilisateurs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden delay-500 animate-fade-in">
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-center text-gray-900 mb-6">🎨 Points forts du site</h3>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-gray-900 mb-2">Design épuré</h4>
+                            <p class="text-gray-500">Interface claire et moderne pour une expérience utilisateur optimale</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-gray-900 mb-2">Performance</h4>
+                            <p class="text-gray-500">Navigation fluide et temps de chargement réduits</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-gray-900 mb-2">Sécurité</h4>
+                            <p class="text-gray-500">Système sécurisé avec gestion des sessions et protection des données</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="tech" class="py-16 bg-white animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl delay-100 animate-fade-in">
+                    Structure Technique
+                </h2>
+                <div class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto delay-200 animate-fade-in">
+                    Une architecture moderne et robuste pour une plateforme performante
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 delay-300 animate-fade-in">
+                <div class="bg-gray-50 p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                            <i class="fas fa-code text-white text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">Frontend</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        HTML5, CSS3 et JavaScript pour une interface dynamique et réactive avec des animations fluides.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                            <i class="fas fa-server text-white text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">Backend</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        PHP avec PDO pour une connexion sécurisée à la base de données et une gestion robuste des données.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                            <i class="fas fa-database text-white text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">Base de Données</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        MySQL/MariaDB via phpMyAdmin sur XAMPP pour un stockage efficace et structuré des données.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 delay-400 animate-fade-in">
+                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-info-circle text-indigo-500 text-xl"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-indigo-800">Système de session</h3>
+                            <div class="mt-2 text-sm text-indigo-700">
+                                <p>Gestion via $_SESSION pour suivre le panier et l'authentification des utilisateurs de manière sécurisée.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- File Structure Section -->
+    <section id="structure" class="py-16 bg-gray-50 animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl delay-100 animate-fade-in">
+                    Structure des fichiers
+                </h2>
+                <div class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto delay-200 animate-fade-in">
+                    Une organisation claire et logique pour un développement maintenable
+                </div>
+            </div>
+            
+            <div class="bg-white shadow overflow-hidden rounded-lg delay-300 animate-fade-in">
+                <div class="px-4 py-5 sm:px-6 bg-gray-50">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        Arborescence du projet
+                    </h3>
+                </div>
+                <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                    <div class="py-4 sm:py-5 sm:grid sm:grid-cols-1">
+                        <div class="font-mono text-sm text-gray-700 p-4 overflow-x-auto">
+                            <div class="pl-4">e-commerce/</div>
+                            <div class="pl-8">├── assets/</div>
+                            <div class="pl-12">│   ├── css/ <span class="text-gray-400"># Feuilles de style</span></div>
+                            <div class="pl-12">│   ├── js/ <span class="text-gray-400"># Scripts JavaScript</span></div>
+                            <div class="pl-12">│   ├── images/ <span class="text-gray-400"># Images des livres et design</span></div>
+                            <div class="pl-8">├── config/</div>
+                            <div class="pl-12">│   ├── database.php <span class="text-gray-400"># Connexion à la base de données</span></div>
+                            <div class="pl-8">├── includes/</div>
+                            <div class="pl-12">│   ├── header.php <span class="text-gray-400"># Menu de navigation</span></div>
+                            <div class="pl-12">│   ├── footer.php <span class="text-gray-400"># Pied de page</span></div>
+                            <div class="pl-8">├── pages/</div>
+                            <div class="pl-12">│   ├── index.php <span class="text-gray-400"># Accueil</span></div>
+                            <div class="pl-12">│   ├── panier.php <span class="text-gray-400"># Panier</span></div>
+                            <div class="pl-12">│   ├── login.php <span class="text-gray-400"># Connexion</span></div>
+                            <div class="pl-12">│   ├── register.php <span class="text-gray-400"># Inscription</span></div>
+                            <div class="pl-12">│   ├── historique-commandes.php</div>
+                            <div class="pl-8">├── admin/</div>
+                            <div class="pl-12">│   ├── dashboard.php <span class="text-gray-400"># Dashboard admin</span></div>
+                            <div class="pl-12">│   ├── gestion-livres.php</div>
+                            <div class="pl-12">│   ├── gestion-commandes.php</div>
+                            <div class="pl-12">│   ├── gestion-clients.php</div>
+                            <div class="pl-8">├── actions/</div>
+                            <div class="pl-12">│   ├── add_to_cart.php</div>
+                            <div class="pl-12">│   ├── remove_from_cart.php</div>
+                            <div class="pl-12">│   ├── process_order.php</div>
+                            <div class="pl-8">├── index.php <span class="text-gray-400"># Redirection vers la page principale</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 delay-400 animate-fade-in">
+                <div class="bg-white shadow overflow-hidden rounded-lg">
+                    <div class="px-4 py-5 sm:px-6 bg-gray-50">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            🔐 Accès rapide
+                        </h3>
+                    </div>
+                    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-2 sm:gap-4">
+                            <div class="px-4 py-2">
+                                <h4 class="text-md font-medium text-gray-900 mb-2">Espace client</h4>
+                                <ul class="list-disc pl-5 text-gray-600">
+                                    <li>Inscription via register.php</li>
+                                    <li>Connexion via login.php</li>
+                                </ul>
+                            </div>
+                            <div class="px-4 py-2">
+                                <h4 class="text-md font-medium text-gray-900 mb-2">Espace administrateur</h4>
+                                <ul class="list-disc pl-5 text-gray-600">
+                                    <li>Connexion sécurisée via login.php</li>
+                                    <li>Redirection vers admin/dashboard.php après identification</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-indigo-700 text-white animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-6 delay-100 animate-fade-in">Prêt à explorer Bookstore ?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto delay-200 animate-fade-in">Une plateforme e-commerce complète pour les amateurs de livres.</p>
+            <div class="delay-300 animate-fade-in">
+                <a href="../index.html" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-50 transition duration-300">
+                    Retour aux projets
+                    <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="delay-100 animate-fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-book-open mr-2"></i> Bookstore
+                    </h3>
+                    <p class="text-gray-400">
+                        Une librairie en ligne moderne avec une expérience utilisateur optimisée.
+                    </p>
+                </div>
+                <div class="delay-200 animate-fade-in">
+                    <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#presentation" class="text-gray-400 hover:text-white transition">Présentation</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition">Fonctionnalités</a></li>
+                        <li><a href="#tech" class="text-gray-400 hover:text-white transition">Technologie</a></li>
+                        <li><a href="#structure" class="text-gray-400 hover:text-white transition">Structure</a></li>
+                    </ul>
+                </div>
+                <div class="delay-300 animate-fade-in">
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> freddytuisseu@gmail.com
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i> 077 21 80 57
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 delay-400 animate-fade-in">
+                <p>&copy; 2025 Bookstore. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                }
+            });
+        };
+        
+        // Initial check
+        animateOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>

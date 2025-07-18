@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration de Zimbra - Projet Messagerie</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(0, 119, 204, 0.9) 0%, rgba(0, 153, 255, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .zoom-in {
+            transition: transform 0.3s ease;
+        }
+        
+        .zoom-in:hover {
+            transform: scale(1.03);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .code-block {
+            font-family: 'Courier New', monospace;
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #0077cc;
+            border: 4px solid #e2e8f0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 29px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header with Zimbra logo background -->
+    <header class="hero-bg text-white py-20 px-4 md:px-10 lg:px-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="max-w-6xl mx-auto relative z-10 fade-in">
+            <div class="flex items-center mb-6">
+                <img src="./images/téléchargement.png" alt="Zimbra Logo" class="h-12 mr-4">
+                <h1 class="text-4xl md:text-5xl font-bold">Configuration de la Messagerie Zimbra</h1>
+            </div>
+            <p class="text-xl md:text-2xl max-w-3xl leading-relaxed">
+                Mise en place d'un serveur de messagerie local complet avec Zimbra Collaboration Suite sur Ubuntu 20.04 LTS
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+                <a href="#presentation" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-info-circle mr-2"></i>Voir la présentation
+                </a>
+                <a href="#installation" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-server mr-2"></i>Procédure d'installation
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Presentation Section -->
+    <section id="presentation" class="py-16 px-4 md:px-10 lg:px-20 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 slide-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">📌 Présentation du projet</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    Ce projet a pour objectif de mettre en place un serveur de messagerie local complet avec Zimbra Collaboration Suite sur Ubuntu 20.04 LTS, en utilisant Bind9 comme serveur DNS.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md slide-up">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-network-wired text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Environnement réseau</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        L'environnement est conçu pour fonctionner dans un réseau local, avec une gestion complète des enregistrements DNS (A, MX, PTR) pour garantir la résolution correcte des noms de domaine, essentielle au bon fonctionnement de Zimbra.
+                    </p>
+                    <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Réseau local" class="w-full h-48 object-cover rounded-lg zoom-in">
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md slide-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-envelope text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Solution de messagerie</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Zimbra Collaboration Suite offre une solution complète de messagerie avec calendrier, contacts, tâches et partage de documents, idéale pour les environnements pédagogiques ou d'entreprise.
+                    </p>
+                    <img src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Interface Zimbra" class="w-full h-48 object-cover rounded-lg zoom-in">
+                </div>
+            </div>
+            
+            <!-- Environment Specifications -->
+            <div class="bg-blue-50 rounded-xl p-8 mb-16 slide-up" style="animation-delay: 0.4s;">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">🌐 Environnement du projet</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-desktop text-blue-600 mr-3"></i>
+                            <h4 class="font-semibold text-gray-700">OS</h4>
+                        </div>
+                        <p class="text-gray-600">Ubuntu 20.04 LTS</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-globe text-blue-600 mr-3"></i>
+                            <h4 class="font-semibold text-gray-700">Serveur DNS</h4>
+                        </div>
+                        <p class="text-gray-600">Bind9</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-mail-bulk text-blue-600 mr-3"></i>
+                            <h4 class="font-semibold text-gray-700">Serveur de messagerie</h4>
+                        </div>
+                        <p class="text-gray-600">Zimbra 8.8.15</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-signature text-blue-600 mr-3"></i>
+                            <h4 class="font-semibold text-gray-700">Nom de domaine</h4>
+                        </div>
+                        <p class="text-gray-600">exemple.nana.com</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-server text-blue-600 mr-3"></i>
+                            <h4 class="font-semibold text-gray-700">Nom du serveur</h4>
+                        </div>
+                        <p class="text-gray-600">mail.nana.com</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-network-wired text-blue-600 mr-3"></i>
+                            <h4 class="font-semibold text-gray-700">Adresse IP locale</h4>
+                        </div>
+                        <p class="text-gray-600">192.168.137.150</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Architecture Diagram -->
+            <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-md slide-up" style="animation-delay: 0.6s;">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Architecture du système</h3>
+                <img src="./images/Zimbra-dnscache.png" alt="Architecture Zimbra" class="w-full rounded-lg zoom-in">
+                <p class="text-gray-600 mt-4 text-center">
+                    Schéma d'architecture montrant l'interaction entre les différents composants de Zimbra et le serveur DNS.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Procedure Section -->
+    <section id="installation" class="py-16 px-4 md:px-10 lg:px-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 slide-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Procédure d'installation</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    Étapes détaillées pour configurer un serveur de messagerie Zimbra complet avec gestion DNS locale.
+                </p>
+            </div>
+            
+            <!-- Timeline of installation steps -->
+            <div class="relative pl-16 timeline">
+                <!-- Step 1 -->
+                <div class="relative mb-12 timeline-item slide-up">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 text-white text-lg font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">1</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Installation et Configuration de Bind9 (Serveur DNS)</h3>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-terminal text-blue-500 mr-2"></i> 1.1 Installer Bind9
+                            </h4>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <code>sudo apt update && sudo apt install bind9 bind9utils bind9-doc dnsutils -y</code>
+                            </div>
+                            <p class="text-gray-600">Installe Bind9 et ses utilitaires nécessaires.</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-file-code text-blue-500 mr-2"></i> 1.2 Configurer les fichiers de zones DNS
+                            </h4>
+                            <p class="text-gray-600 mb-3">Fichier de zone directe : <code class="bg-gray-200 px-2 py-1 rounded">/etc/bind/db.nana.com</code></p>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>$TTL 604800
+@   IN  SOA mail.nana.com. root.nana.com. (
+        2 ; Serial
+        604800 ; Refresh
+        86400  ; Retry
+        2419200 ; Expire
+        604800 ) ; Negative Cache TTL
+@   IN  NS  mail.nana.com.
+@   IN  A   192.168.137.150
+mail IN  A   192.168.137.150
+@   IN  MX  10 mail.nana.com.</pre>
+                            </div>
+                            <p class="text-gray-600">Associe le domaine au serveur Zimbra et configure le mail exchanger (MX).</p>
+                            
+                            <p class="text-gray-600 mt-4 mb-3">Fichier de zone inverse : <code class="bg-gray-200 px-2 py-1 rounded">/etc/bind/db.137.168.192.in-addr.arpa</code></p>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>$TTL 604800
+@   IN  SOA mail.nana.com. root.nana.com. (
+        2 ; Serial
+        604800 ; Refresh
+        86400  ; Retry
+        2419200 ; Expire
+        604800 ) ; Negative Cache TTL
+@   IN  NS  mail.nana.com.
+150 IN  PTR mail.nana.com.</pre>
+                            </div>
+                            <p class="text-gray-600">Permet la résolution inverse (IP vers nom de domaine).</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-cog text-blue-500 mr-2"></i> 1.3 Déclaration des zones DNS
+                            </h4>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>sudo nano /etc/bind/named.conf.local</pre>
+                            </div>
+                            <p class="text-gray-600 mb-3">Ajoutez :</p>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>zone "nana.com" {
+    type master;
+    file "/etc/bind/db.nana.com";
+};
+
+zone "137.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.137.168.192.in-addr.arpa";
+};</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-sync-alt text-blue-500 mr-2"></i> 1.4 Redémarrer et tester Bind9
+                            </h4>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>sudo named-checkzone nana.com /etc/bind/db.nana.com
+sudo named-checkzone 137.168.192.in-addr.arpa /etc/bind/db.137.168.192.in-addr.arpa
+sudo systemctl restart bind9</pre>
+                            </div>
+                            <p class="text-gray-600">Vérifie la validité des fichiers de zone et relance Bind.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-info-circle text-blue-500 text-xl mt-1"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="text-sm font-medium text-blue-800">Conseil professionnel</h4>
+                                    <div class="mt-2 text-sm text-blue-700">
+                                        <p>Assurez-vous que les enregistrements DNS sont correctement configurés avant de passer à l'installation de Zimbra. Une mauvaise configuration DNS est la principale cause de problèmes avec les serveurs de messagerie.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="relative mb-12 timeline-item slide-up" style="animation-delay: 0.2s;">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 text-white text-lg font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">2</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Pré-configuration système pour Zimbra</h3>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-file-alt text-blue-500 mr-2"></i> 2.1 Modifier /etc/hosts
+                            </h4>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>127.0.0.1 localhost
+192.168.137.150 mail.nana.com mail</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-file-alt text-blue-500 mr-2"></i> 2.2 Modifier /etc/resolv.conf
+                            </h4>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>nameserver 127.0.0.1
+search nana.com</pre>
+                            </div>
+                            <p class="text-gray-600">Utilise le DNS local.</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-terminal text-blue-500 mr-2"></i> 2.3 Fixer le nom d'hôte
+                            </h4>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>sudo hostnamectl set-hostname mail.nana.com</pre>
+                            </div>
+                        </div>
+                        
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Configuration système" class="w-full h-48 object-cover rounded-lg mb-4 zoom-in">
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="relative mb-12 timeline-item slide-up" style="animation-delay: 0.4s;">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 text-white text-lg font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">3</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Installation de Zimbra</h3>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-download text-blue-500 mr-2"></i> 3.1 Télécharger Zimbra
+                            </h4>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>wget https://files.zimbra.com/downloads/8.8.15_GA/zcs-8.8.15_GA_4179.UBUNTU20_64.20211118033954.tgz
+tar -xvzf zcs-8.8.15_GA_4179.UBUNTU20_64.tgz
+cd zcs-8.8.15_GA_4179.UBUNTU20_64</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-terminal text-blue-500 mr-2"></i> 3.2 Installer Zimbra
+                            </h4>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>sudo ./install.sh</pre>
+                            </div>
+                            <p class="text-gray-600">Suivez les questions, acceptez la licence, choisissez les services LDAP, MTA, Store, etc.</p>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-exclamation-triangle text-yellow-500 text-xl mt-1"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="text-sm font-medium text-yellow-800">Points à vérifier</h4>
+                                    <div class="mt-2 text-sm text-yellow-700">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>Le domaine est bien détecté via MX</li>
+                                            <li>Aucun conflit sur le port 53 (si Bind est actif)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <img src="./images/Set-Up-Zimbra-Mail-Server-on-Ubuntu-20.04.png" 
+     alt="Interface d'installation Zimbra" 
+     class="w-full rounded-lg mt-6 zoom-in">
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="relative mb-12 timeline-item slide-up" style="animation-delay: 0.6s;">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 text-white text-lg font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">4</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Vérification post-installation</h3>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-check-circle text-blue-500 mr-2"></i> 4.1 Vérifier les services Zimbra
+                            </h4>
+                            <div class="code-block p-4 rounded-lg mb-4 relative">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre>sudo su - zimbra
+zmcontrol status</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-globe text-blue-500 mr-2"></i> 4.2 Accès Web
+                            </h4>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-gray-700"><span class="font-medium">Webmail :</span> <a href="https://mail.nana.com" class="text-blue-600 hover:underline">https://mail.nana.com</a></p>
+                                <p class="text-gray-700"><span class="font-medium">Console Admin :</span> <a href="https://mail.nana.com:7071" class="text-blue-600 hover:underline">https://mail.nana.com:7071</a></p>
+                            </div>
+                        </div>
+                        
+                        <img src="./images/scaled_console_firstview.jpg" 
+     alt="Console d'administration Zimbra" 
+     class="w-full rounded-lg mt-6 zoom-in">
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="relative timeline-item slide-up" style="animation-delay: 0.8s;">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 text-white text-lg font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">5</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Commandes utiles Zimbra</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-gray-700 mb-2">Redémarrer Zimbra</h4>
+                                <div class="code-block p-3 rounded-lg relative">
+                                    <button class="copy-btn" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <code>zmcontrol restart</code>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-gray-700 mb-2">Modifier mot de passe admin</h4>
+                                <div class="code-block p-3 rounded-lg relative">
+                                    <button class="copy-btn" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <code>zmprov sp admin@nana.com NouveauMotdepasse</code>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-gray-700 mb-2">Vérifier services</h4>
+                                <div class="code-block p-3 rounded-lg relative">
+                                    <button class="copy-btn" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <code>zmcontrol status</code>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-gray-700 mb-2">Créer un utilisateur</h4>
+                                <div class="code-block p-3 rounded-lg relative">
+                                    <button class="copy-btn" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <code>zmprov ca user@nana.com motdepasse</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conclusion -->
+            <div class="bg-green-50 rounded-xl p-8 mt-16 slide-up" style="animation-delay: 1s;">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">✅ Bilan</h3>
+                    <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                        Vous avez installé un système complet de messagerie avec gestion DNS en local, prêt à être utilisé dans un environnement réseau privé ou de test.
+                    </p>
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Succès" class="w-full max-w-2xl mx-auto h-64 object-cover rounded-lg mt-6 zoom-in">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 px-4 md:px-10 lg:px-20">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">Configuration Zimbra</h3>
+                <p class="text-gray-300">Guide complet pour l'installation et la configuration d'un serveur de messagerie Zimbra avec gestion DNS locale.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Ressources</h3>
+                <ul class="space-y-2">
+                    <li><a href="https://www.zimbra.com" class="text-gray-300 hover:text-white transition">Site officiel Zimbra</a></li>
+                    <li><a href="https://wiki.zimbra.com" class="text-gray-300 hover:text-white transition">Documentation Zimbra</a></li>
+                    <li><a href="https://ubuntu.com" class="text-gray-300 hover:text-white transition">Ubuntu Server</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Contact</h3>
+                <p class="text-gray-300">Pour toute question ou assistance supplémentaire concernant cette configuration.</p>
+                <div class="mt-4 flex space-x-4">
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-github text-xl"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fas fa-envelope text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+            <p>© 2023 Projet Configuration Zimbra. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Copy code functionality
+        function copyCode(button) {
+            const codeBlock = button.parentElement;
+            const code = codeBlock.querySelector('code, pre').innerText;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                // Change button icon temporarily
+                const icon = button.querySelector('i');
+                const originalClass = icon.className;
+                
+                icon.className = 'fas fa-check';
+                button.style.backgroundColor = 'rgba(0, 128, 0, 0.5)';
+                
+                setTimeout(() => {
+                    icon.className = originalClass;
+                    button.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                }, 2000);
+            });
+        }
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        document.querySelectorAll('.slide-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

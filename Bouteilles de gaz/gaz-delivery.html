@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freddy T. - Gestion des Livraisons de Gaz</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/gaz-delivery.css">
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarProject">
+    <!-- Navigation Projet -->
+    <nav id="navbarProject" class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="../index.html">Freddy T.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarProjectNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarProjectNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#presentation">Présentation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#connexion">Connexion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#admin">Interface Admin</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#controller">Interface Contrôleur</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#technologies">Technologies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#challenges">Défis</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section Projet -->
+    <header class="project-hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container text-center animate__animated animate__fadeIn">
+            <h1 class="hero-title animate__animated animate__fadeInUp animate__delay-1s">Gestion des Livraisons de Gaz</h1>
+            <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">Solution complète pour le suivi des bouteilles de gaz au Gabon</p>
+            <div class="project-techs mt-4 animate__animated animate__fadeIn animate__delay-2s">
+                <span class="tech-tag">React Native</span>
+                <span class="tech-tag">Firebase</span>
+                <span class="tech-tag">Redux</span>
+                <span class="tech-tag">Hors Ligne</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Présentation -->
+    <section id="presentation" class="py-5 section-bg-1">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title mb-4 animate__animated">Présentation du Projet</h2>
+                    <p class="animate__animated">
+                        Cette application mobile permet la gestion complète du cycle de vie des bouteilles de gaz, depuis le départ en livraison jusqu'au retour des bouteilles vides, avec un suivi en temps réel du stock.
+                    </p>
+                    <div class="info-box mt-4 p-4 animate__animated">
+                        <h4>Fonctionnalités clés</h4>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle me-2"></i> Gestion des stocks (pleines/vides/consignes)</li>
+                            <li><i class="fas fa-check-circle me-2"></i> Suivi des livraisons en temps réel</li>
+                            <li><i class="fas fa-check-circle me-2"></i> Fonctionnement hors ligne</li>
+                            <li><i class="fas fa-check-circle me-2"></i> Deux interfaces distinctes (Admin/Contrôleur)</li>
+                            <li><i class="fas fa-check-circle me-2"></i> Gestion des salaires et statistiques</li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Connexion -->
+    <section id="connexion" class="py-5 section-bg-2">
+        <div class="container">
+            <h2 class="section-title text-center mb-5 animate__animated">Système de Connexion</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="feature-card animate__animated">
+                        <div>
+                              <img src="./images/Capture d'écran 2025-07-16 183703.png" 
+     alt="Pas de connexion" 
+     class="w-full rounded-lg mt-6 zoom-in">
+                        </div>
+                        <div class="feature-body">
+                            <h3>Authentification Sécurisée</h3>
+                            <p>Deux modes de connexion disponibles avec des droits d'accès distincts :</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Administrateur</h5>
+                                    <ul>
+                                        <li>Accès complet à toutes les fonctionnalités</li>
+                                        <li>Gestion des utilisateurs</li>
+                                        <li>Statistiques globales</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Contrôleur</h5>
+                                    <ul>
+                                        <li>Gestion des livraisons</li>
+                                        <li>Suivi des stocks</li>
+                                        <li>Enregistrement des retours</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="security-features mt-3">
+                                <span class="badge bg-primary me-2"><i class="fas fa-lock me-1"></i> JWT</span>
+                                <span class="badge bg-primary me-2"><i class="fas fa-sync-alt me-1"></i> Refresh Token</span>
+                                <span class="badge bg-primary"><i class="fas fa-shield-alt me-1"></i> Chiffrement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Admin -->
+    <section id="admin" class="py-5 section-bg-3">
+        <div class="container">
+            <h2 class="section-title text-center mb-5 animate__animated">Interface Administrateur</h2>
+            
+            <div class="row">
+                <!-- Dashboard Admin -->
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card animate__animated">
+                        <div class="feature-img-container">
+                            <img src="../Bouteilles de gaz/images/Capture d'écran 2025-07-16 182557.png" class="feature-img" alt="Dashboard Admin">
+                        </div>
+                        <div class="feature-body">
+                            <h3>Tableau de Bord Administrateur</h3>
+                            <p>Vue d'ensemble avec statistiques globales :</p>
+                            <ul>
+                                <li>Nombre d'utilisateurs et chauffeurs</li>
+                                <li>Total des livraisons</li>
+                                <li>État du stock en temps réel</li>
+                                <li>Salaires en attente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gestion Utilisateurs -->
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card animate__animated">
+                        <div class="feature-img-container">
+                            <img src="../Bouteilles de gaz/images/Capture d'écran 2025-07-16 182947.png" class="feature-img" alt="Gestion Utilisateurs">
+                        </div>
+                        <div class="feature-body">
+                            <h3>Gestion des Utilisateurs</h3>
+                            <p>Création et gestion des comptes avec différents rôles :</p>
+                            <ul>
+                                <li>Administrateur</li>
+                                <li>Contrôleur</li>
+                                <li>Chauffeur</li>
+                            </ul>
+                            <p>Filtrage et recherche rapide des utilisateurs.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gestion Camions -->
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card animate__animated">
+                        <div class="feature-img-container">
+                            <img src="../Bouteilles de gaz/images/Capture d'écran 2025-07-16 183041.png" class="feature-img" alt="Ajout Utilisateur">
+                        </div>
+                        <div class="feature-body">
+                            <h3>Ajout d'Utilisateur</h3>
+                            <p>Formulaire complet pour créer un nouvel utilisateur :</p>
+                            <ul>
+                                <li>Nom complet et email</li>
+                                <li>Définition du mot de passe</li>
+                                <li>Attribution du rôle</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Historique -->
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card animate__animated">
+                        <div class="feature-img-container">
+                            <img src="../Bouteilles de gaz/images/Capture d'écran 2025-07-16 183349.png" class="feature-img" alt="Historique Livraisons">
+                        </div>
+                        <div class="feature-body">
+                            <h3>Historique des Livraisons</h3>
+                            <p>Suivi détaillé de toutes les actions :</p>
+                            <ul>
+                                <li>Date et heure précises</li>
+                                <li>Utilisateur responsable</li>
+                                <li>Actions effectuées</li>
+                                <li>Quantités manipulées</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Controller -->
+    <section id="controller" class="py-5 section-bg-4">
+        <div class="container">
+            <h2 class="section-title text-center mb-5 animate__animated">Interface Contrôleur</h2>
+            
+            <div class="row">
+                <!-- Dashboard Controller -->
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card animate__animated">
+                        <div class="feature-img-container">
+                            <img src="../Bouteilles de gaz/images/Capture d'écran 2025-07-16 183828.png" class="feature-img" alt="Dashboard Contrôleur">
+                        </div>
+                        <div class="feature-body">
+                            <h3>Tableau de Bord Contrôleur</h3>
+                            <p>Focus sur les éléments opérationnels :</p>
+                            <ul>
+                                <li>État précis du stock</li>
+                                <li>Liste des chauffeurs disponibles</li>
+                                <li>Camions en service</li>
+                                <li>Salaires en attente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gestion Départs -->
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card animate__animated">
+                        <div class="feature-img-container">
+                            <img src="../Bouteilles de gaz/images/Capture d'écran 2025-07-16 183927.png" class="feature-img" alt="Gestion Départs">
+                        </div>
+                        <div class="feature-body">
+                            <h3>Gestion des Départs</h3>
+                            <p>Organisation des livraisons :</p>
+                            <ul>
+                                <li>Sélection du chauffeur</li>
+                                <li>Choix du camion</li>
+                                <li>Quantité de bouteilles pleines</li>
+                                <li>Enregistrement du départ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gestion Retours -->
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card animate__animated">
+                        <div class="feature-img-container">
+                            <img src="../Bouteilles de gaz/images/Capture d'écran 2025-07-16 184045.png" class="feature-img" alt="Gestion Retours">
+                        </div>
+                        <div class="feature-body">
+                            <h3>Enregistrement des Retours</h3>
+                            <p>Comptabilisation des retours :</p>
+                            <ul>
+                                <li>Saisie de l'ID de livraison</li>
+                                <li>Bouteilles pleines retournées</li>
+                                <li>Bouteilles vides retournées</li>
+                                <li>Mise à jour automatique du stock</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Historique Livraisons -->
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card animate__animated">
+                        <div class="feature-img-container">
+                            <img src="../Bouteilles de gaz/images/Capture d'écran 2025-07-16 184200.png" class="feature-img" alt="Historique Livraisons">
+                        </div>
+                        <div class="feature-body">
+                            <h3>Historique des Livraisons</h3>
+                            <p>Suivi détaillé des mouvements :</p>
+                            <ul>
+                                <li>Livraisons en cours</li>
+                                <li>Livraisons terminées</li>
+                                <li>Quantités envoyées/vendues</li>
+                                <li>Retours des bouteilles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Technologies -->
+    <section id="technologies" class="py-5 section-bg-1">
+        <div class="container">
+            <h2 class="section-title text-center mb-5 animate__animated">Technologies Utilisées</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="tech-card p-4 mb-4 animate__animated">
+                        <h3><i class="fas fa-mobile-alt me-2"></i> Frontend Mobile</h3>
+                        <div class="skill-item">
+                            <span>React Native</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-react" style="width: 85%">85%</div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Redux (State Management)</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-redux" style="width: 80%">80%</div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>React Navigation</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-navigation" style="width: 75%">75%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="tech-card p-4 mb-4 animate__animated">
+                        <h3><i class="fas fa-server me-2"></i> Backend & Stockage</h3>
+                        <div class="skill-item">
+                            <span>Firebase (Firestore)</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-firebase" style="width: 90%">90%</div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Hors Ligne (AsyncStorage)</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-offline" style="width: 85%">85%</div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Authentification (JWT)</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-auth" style="width: 80%">80%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="architecture-box p-4 mt-4 animate__animated">
+                <h3 class="text-center mb-4">Architecture de l'Application</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="arch-feature">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>Multiplateforme</h4>
+                            <p>Déployée sur iOS et Android avec une base de code unique</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="arch-feature">
+                            <i class="fas fa-wifi-slash"></i>
+                            <h4>Mode Hors Ligne</h4>
+                            <p>Fonctionnalité complète même sans connexion internet</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="arch-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Sécurisée</h4>
+                            <p>Authentification robuste et chiffrement des données</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Challenges -->
+    <section id="challenges" class="py-5 section-bg-2">
+        <div class="container">
+            <h2 class="section-title text-center mb-5 animate__animated">Défis Relevés</h2>
+            
+            <div class="challenge-timeline">
+                <div class="timeline-item animate__animated">
+                    <div class="timeline-badge">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-card">
+                            <h4>Synchronisation Hors Ligne</h4>
+                            <div class="timeline-description">
+                                <p>Implémentation d'un système robuste de file d'attente pour les opérations effectuées sans connexion, avec synchronisation automatique lors du rétablissement du réseau.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate__animated">
+                    <div class="timeline-badge">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-card">
+                            <h4>Interfaces Adaptatives</h4>
+                            <div class="timeline-description">
+                                <p>Création de deux interfaces distinctes mais cohérentes pour les administrateurs et les contrôleurs, avec des workflows optimisés pour chaque rôle.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate__animated">
+                    <div class="timeline-badge">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-card">
+                            <h4>Performance</h4>
+                            <div class="timeline-description">
+                                <p>Optimisation des performances pour des temps de réponse inférieurs à 500ms même avec des milliers d'enregistrements, grâce à une architecture de données efficace.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="../index.html#projets" class="btn btn-primary btn-lg animate__animated">
+                    <i class="fas fa-arrow-left me-2"></i> Retour aux projets
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4">
+        <div class="container text-center">
+            <h3 class="footer-logo mb-3">Freddy Tuisseu</h3>
+            <p class="mb-4">Étudiant en Génie Informatique passionné par les nouvelles technologies</p>
+            <div class="social-links mb-4">
+                <a href="#" class="mx-2"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-github fa-lg"></i></a>
+                <a href="https://freddyportfolio.my.canva.site/" class="mx-2"><i class="fas fa-globe fa-lg"></i></a>
+            </div>
+            <p class="copyright mb-0">&copy; 2025 Portfolio Freddy Tuisseu. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS personnalisé -->
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/gaz-delivery.js"></script>
+</body>
+</html>

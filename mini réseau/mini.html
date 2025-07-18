@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation du Projet - Mini Réseau Social</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .tech-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .tech-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .zoom-in {
+            transition: transform 0.3s ease;
+        }
+        
+        .zoom-in:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-16 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">Mini Réseau Social</h1>
+            <p class="text-xl md:text-2xl opacity-90 mb-8 animate-fade-in delay-100">Un projet web full-stack complet</p>
+            <div class="animate-fade-in delay-200">
+                <a href="../index.html" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition inline-block">
+                    <i class="fas fa-arrow-left mr-2"></i> Retour aux projets
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Presentation -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 animate-fade-in">📌 Présentation du Projet</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in delay-100">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Mini Réseau Social Web</h3>
+                    <p class="text-gray-600 mb-6">
+                        Ce projet consiste à concevoir et développer un mini réseau social complet, inspiré des grandes plateformes comme WhatsApp et Facebook, avec des fonctionnalités modernes et une interface utilisateur intuitive.
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                        <p class="text-blue-700 font-medium">L'objectif est de maîtriser un projet web full-stack : base de données MySQL, back-end en PHP, front-end en HTML/CSS/JS, avec un code organisé et sécurisé.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <img src="./images/Capture d’écran 2025-07-18 071536.png" 
+                         alt="Interface principale" 
+                         class="w-full rounded-lg shadow-md zoom-in">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Goals -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 animate-fade-in">🎯 Objectif du Projet</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition animate-fade-in delay-100">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Sécurité</h3>
+                    <p class="text-gray-600">
+                        Implémentation de mesures de sécurité avancées contre les attaques XSS, CSRF et SQL Injection.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition animate-fade-in delay-200">
+                    <div class="text-indigo-500 text-3xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Expérience Utilisateur</h3>
+                    <p class="text-gray-600">
+                        Interface moderne et responsive avec animations fluides et interactions en temps réel.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition animate-fade-in delay-300">
+                    <div class="text-green-500 text-3xl mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Code Structuré</h3>
+                    <p class="text-gray-600">
+                        Architecture MVC simplifiée avec séparation claire entre front-end et back-end.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="./images/Capture d’écran 2025-07-18 072302.png" 
+                         alt="Objectif de l'application" 
+                         class="w-full rounded-lg shadow-md zoom-in">
+                </div>
+                <div class="animate-fade-in delay-500">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Fonctionnalités clés</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Messagerie en temps réel</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Système de publications (texte + images)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Likes et commentaires dynamiques</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Notifications temps réel</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Gestion sécurisée des utilisateurs</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 animate-fade-in">🧱 Technologies utilisées</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="tech-icon text-center p-4 animate-fade-in delay-100">
+                    <div class="text-5xl text-blue-500 mb-2">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <p class="font-medium">HTML5</p>
+                </div>
+                
+                <div class="tech-icon text-center p-4 animate-fade-in delay-150">
+                    <div class="text-5xl text-blue-400 mb-2">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <p class="font-medium">CSS3</p>
+                </div>
+                
+                <div class="tech-icon text-center p-4 animate-fade-in delay-200">
+                    <div class="text-5xl text-yellow-500 mb-2">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <p class="font-medium">JavaScript</p>
+                </div>
+                
+                <div class="tech-icon text-center p-4 animate-fade-in delay-250">
+                    <div class="text-5xl text-purple-500 mb-2">
+                        <i class="fab fa-php"></i>
+                    </div>
+                    <p class="font-medium">PHP</p>
+                </div>
+                
+                <div class="tech-icon text-center p-4 animate-fade-in delay-300">
+                    <div class="text-5xl text-blue-600 mb-2">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <p class="font-medium">MySQL</p>
+                </div>
+                
+                <div class="tech-icon text-center p-4 animate-fade-in delay-350">
+                    <div class="text-5xl text-green-500 mb-2">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <p class="font-medium">PDO</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-gray-50 p-6 rounded-xl animate-fade-in delay-400">
+                <h3 class="text-xl font-semibold mb-4 text-gray-800">📁 Arborescence du projet simplifiée</h3>
+                <div class="bg-gray-800 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                    <div class="mb-2">mini_reseau_social/</div>
+                    <div class="ml-4 mb-2">├── actions/ <span class="text-gray-400">→ Tous les scripts PHP (login, register, post, like…)</span></div>
+                    <div class="ml-4 mb-2">├── assets/</div>
+                    <div class="ml-8 mb-2">├── css/ <span class="text-gray-400">→ style.css, auth.css, index.css</span></div>
+                    <div class="ml-8 mb-2">├── js/ <span class="text-gray-400">→ main.js, chat.js, posts.js, notifications.js</span></div>
+                    <div class="ml-8 mb-2">└── images/ <span class="text-gray-400">→ images utilisateurs et posts</span></div>
+                    <div class="ml-4 mb-2">├── config/ <span class="text-gray-400">→ Fichier de connexion base de données (database.php)</span></div>
+                    <div class="ml-4 mb-2">├── pages/ <span class="text-gray-400">→ login.php, register.php, accueil.php, profil.php</span></div>
+                    <div class="ml-4">└── index.php <span class="text-gray-400">→ Page d'accueil publique</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 animate-fade-in">🔐 Fonctionnalités principales</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md transition duration-300 animate-fade-in delay-100">
+                    <div class="text-4xl text-blue-500 mb-4">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">1️⃣ Gestion des utilisateurs</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Inscription sécurisée avec mot de passe hashé</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Connexion avec sessions PHP</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Réinitialisation du mot de passe sécurisée</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Profil utilisateur avec photo</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md transition duration-300 animate-fade-in delay-200">
+                    <div class="text-4xl text-purple-500 mb-4">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">2️⃣ Publications</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Création de publications texte et image</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Affichage en temps réel</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Optimisation des images à l'upload</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md transition duration-300 animate-fade-in delay-300">
+                    <div class="text-4xl text-red-500 mb-4">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">3️⃣ Likes et Commentaires</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Like dynamique avec compteur</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Commentaires instantanés</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Anti-like multiple</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md transition duration-300 animate-fade-in delay-100">
+                    <div class="text-4xl text-green-500 mb-4">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">4️⃣ Messagerie privée</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Chat entre utilisateurs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Liste des utilisateurs connectés</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Interface responsive</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md transition duration-300 animate-fade-in delay-200">
+                    <div class="text-4xl text-yellow-500 mb-4">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">5️⃣ Notifications</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Temps réel pour messages</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Notifications pour likes et commentaires</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Compteur de notifications</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md transition duration-300 animate-fade-in delay-300">
+                    <div class="text-4xl text-indigo-500 mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">6️⃣ Sécurité avancée</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-indigo-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Protection XSS et SQL Injection</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-indigo-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Tokens CSRF sur formulaires</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-indigo-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Accès restreint aux pages protégées</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 grid md:grid-cols-2 gap-8 items-center animate-fade-in delay-400">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">7️⃣ Interface utilisateur moderne</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Pages d'authentification avec fond dynamique flouté</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Mode sombre activable</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Animations CSS fluides</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Design responsive pour tous appareils</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="./images/Capture d’écran 2025-07-18 071536.png" 
+                         alt="Interface utilisateur" 
+                         class="w-full rounded-lg shadow-md zoom-in">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Summary -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 animate-fade-in">✅ Bilan : Points forts du projet</h2>
+            
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 animate-fade-in delay-100">
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-800">Avantages techniques</h3>
+                    <ul class="space-y-3 text-blue-700">
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Code structuré et sécurisé</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Architecture MVC simplifiée</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Requêtes préparées avec PDO</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-green-50 p-6 rounded-xl border border-green-100">
+                    <h3 class="text-xl font-semibold mb-4 text-green-800">Expérience utilisateur</h3>
+                    <ul class="space-y-3 text-green-700">
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Interface fluide et réactive</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Design responsive</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                            <span>Fonctionnalités modernes</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 max-w-3xl mx-auto text-center animate-fade-in delay-200">
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">🖥️ Pistes possibles d'évolution</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-5 rounded-lg">
+                        <div class="text-indigo-500 text-2xl mb-3">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4 class="font-medium mb-2">Filtrage avancé</h4>
+                        <p class="text-gray-600 text-sm">Barre de recherche par mot-clé</p>
+                    </div>
+                    <div class="bg-gray-50 p-5 rounded-lg">
+                        <div class="text-indigo-500 text-2xl mb-3">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4 class="font-medium mb-2">Chat WebSocket</h4>
+                        <p class="text-gray-600 text-sm">Temps réel ultra-rapide</p>
+                    </div>
+                    <div class="bg-gray-50 p-5 rounded-lg">
+                        <div class="text-indigo-500 text-2xl mb-3">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h4 class="font-medium mb-2">Stories</h4>
+                        <p class="text-gray-600 text-sm">Contenu éphémère</p>
+                    </div>
+                    <div class="bg-gray-50 p-5 rounded-lg">
+                        <div class="text-indigo-500 text-2xl mb-3">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4 class="font-medium mb-2">API REST</h4>
+                        <p class="text-gray-600 text-sm">Pour application mobile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold text-white mb-2">Mini Réseau Social</h3>
+                    <p class="text-sm">Un projet web full-stack complet</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-sm text-center">
+                <p>© 2025 Mini Réseau Social. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate-fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Add hover effect to feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.style.transition = 'all 0.3s ease';
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                    card.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

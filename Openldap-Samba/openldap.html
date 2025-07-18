@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Ubuntu - Authentification Centralisée</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .code-block {
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .code-block:hover .copy-btn {
+            opacity: 1;
+        }
+        
+        .step-card {
+            transition: all 0.3s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-blue-800 text-white shadow-lg fixed w-full z-10">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <i class="fab fa-ubuntu text-3xl"></i>
+                <span class="text-xl font-bold">Projet Authentification Centralisée</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#objectif" class="hover:text-blue-200 transition">Objectif</a>
+                <a href="#etapes" class="hover:text-blue-200 transition">Étapes</a>
+                <a href="#verification" class="hover:text-blue-200 transition">Vérifications</a>
+                <a href="#conseils" class="hover:text-blue-200 transition">Conseils</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="menu-btn">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div class="md:hidden hidden bg-blue-700 px-6 py-2" id="mobile-menu">
+            <a href="#objectif" class="block py-2 hover:text-blue-200 transition">Objectif</a>
+            <a href="#etapes" class="block py-2 hover:text-blue-200 transition">Étapes</a>
+            <a href="#verification" class="block py-2 hover:text-blue-200 transition">Vérifications</a>
+            <a href="#conseils" class="block py-2 hover:text-blue-200 transition">Conseils</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-24 pb-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">Infrastructure d'Authentification Centralisée</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-fade-in" style="animation-delay: 0.2s;">
+                Serveur OpenLDAP couplé avec Samba sous Ubuntu 22.04
+            </p>
+            <div class="flex justify-center space-x-4 animate-fade-in" style="animation-delay: 0.4s;">
+                <a href="#objectif" class="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition shadow-lg">
+                    Découvrir le projet
+                </a>
+                <a href="#etapes" class="border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-800 transition">
+                    Voir les étapes
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Objectif Section -->
+        <section id="objectif" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">🎯 Objectif du Projet</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <p class="text-lg mb-6">
+                        Mettre en place une infrastructure d'authentification centralisée sous Ubuntu 22.04 en couplant :
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span><strong>OpenLDAP</strong> comme annuaire d'utilisateurs central</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span><strong>Samba</strong> pour le partage de fichiers et gestion des droits via LDAP</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span><strong>phpLDAPadmin</strong> pour une interface de gestion web intuitive</span>
+                        </li>
+                    </ul>
+                    <p class="text-lg">
+                        L'objectif principal est de centraliser la gestion des utilisateurs pour tous les services réseau, permettant une administration simplifiée et sécurisée.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xl border border-gray-200">
+                    <!-- Placeholder for your Ubuntu/LDAP/Samba architecture image -->
+                    <div class="bg-gray-200 h-64 md:h-80 rounded-lg flex items-center justify-center text-gray-500">
+                        <i class="fas fa-network-wired text-5xl"></i>
+                        <p class="ml-4">Diagramme d'architecture</p>
+                    </div>
+                    <p class="text-center mt-4 text-sm text-gray-600">Schéma de l'infrastructure LDAP/Samba</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-blue-50 p-6 rounded-xl border border-blue-200">
+                <h3 class="text-xl font-semibold text-blue-800 mb-4 flex items-center">
+                    <i class="fas fa-laptop-code mr-3"></i> Environnement utilisé
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h4 class="font-medium text-blue-700 mb-2">OS</h4>
+                        <p class="text-gray-700">Ubuntu 22.04</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h4 class="font-medium text-blue-700 mb-2">Annuaire</h4>
+                        <p class="text-gray-700">OpenLDAP</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h4 class="font-medium text-blue-700 mb-2">Partage fichiers</h4>
+                        <p class="text-gray-700">Samba</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h4 class="font-medium text-blue-700 mb-2">Gestion Web</h4>
+                        <p class="text-gray-700">phpLDAPadmin</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Étapes Section -->
+        <section id="etapes" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">📕 Étapes de Mise en  Œuvre</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <!-- Tabs Navigation -->
+            <div class="flex overflow-x-auto mb-8 scrollbar-hide">
+                <button class="tab-btn px-6 py-3 font-medium border-b-2 border-transparent whitespace-nowrap" data-tab="etape1">Étape 1</button>
+                <button class="tab-btn px-6 py-3 font-medium border-b-2 border-transparent whitespace-nowrap" data-tab="etape2">Étape 2</button>
+                <button class="tab-btn px-6 py-3 font-medium border-b-2 border-transparent whitespace-nowrap" data-tab="etape3">Étape 3</button>
+                <button class="tab-btn px-6 py-3 font-medium border-b-2 border-transparent whitespace-nowrap" data-tab="etape4">Étape 4</button>
+                <button class="tab-btn px-6 py-3 font-medium border-b-2 border-transparent whitespace-nowrap" data-tab="etape5">Étape 5</button>
+                <button class="tab-btn px-6 py-3 font-medium border-b-2 border-transparent whitespace-nowrap" data-tab="etape6">Étape 6</button>
+                <button class="tab-btn px-6 py-3 font-medium border-b-2 border-transparent whitespace-nowrap" data-tab="etape7">Étape 7</button>
+                <button class="tab-btn px-6 py-3 font-medium border-b-2 border-transparent whitespace-nowrap" data-tab="etape8">Étape 8</button>
+            </div>
+            
+            <!-- Tab Contents -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <!-- Étape 1 -->
+                <div id="etape1" class="tab-content p-6 active">
+                    <div class="step-card bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
+                            Installation OpenLDAP
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Commandes d'installation :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo apt update && sudo apt install slapd ldap-utils -y</code>
+                                </div>
+                                
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-info-circle text-blue-500 mt-1 mr-2"></i>
+                                        <span><code>slapd</code> : Serveur OpenLDAP</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-info-circle text-blue-500 mt-1 mr-2"></i>
+                                        <span><code>ldap-utils</code> : Outils pour interagir avec LDAP</span>
+                                    </li>
+                                </ul>
+                                
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Initialisation :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo dpkg-reconfigure slapd</code>
+                                </div>
+                                <p class="text-gray-700 mb-4">Suivre les étapes pour définir :</p>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                    <li>Domaine : ex : freddy.org</li>
+                                    <li>Admin DN : cn=admin,dc=freddy,dc=org</li>
+                                    <li>Mot de passe admin</li>
+                                    <li>Pas de suppression de la base existante</li>
+                                    <li>Pas de démarrage du serveur dans un mode sans schéma</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Vérification :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>ldapsearch -x -LLL -H ldap://localhost -b dc=freddy,dc=org</code>
+                                </div>
+                                
+                                <!-- Placeholder for OpenLDAP verification screenshot -->
+                                <div>
+                                    
+                                    <img src="./images/Résultat de la commande ldapsearch.jpg" 
+                         alt="Objectif de l'application" 
+                         class="w-full rounded-lg shadow-md zoom-in">
+                                </div>
+                                <p class="text-center mt-2 text-sm text-gray-600">Résultat de la commande ldapsearch</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Étape 2 -->
+                <div id="etape2" class="tab-content p-6">
+                    <div class="step-card bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
+                            Ajout de schémas LDAP utiles
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Commandes d'ajout :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/cosine.ldif</code>
+                                </div>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/nis.ldif</code>
+                                </div>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/inetorgperson.ldif</code>
+                                </div>
+                                
+                                <p class="text-gray-700 mb-4">
+                                    Ces schémas permettent la gestion des comptes teurs POSIX et Samba.
+                                </p>
+                                
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Ajout du schéma Samba :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo cp /usr/share/doc/samba/examples/LDAP/samba.schema /etc/ldap/schema/</code>
+                                </div>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo mkdir /etc/ldap/schema/converted</code>
+                                </div>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo slaptest -f /etc/ldap/schema/samba.schema -F /etc/ldap/schema/converted/</code>
+                                </div>
+                                <p class="text-gray-700">
+                                    (La conversion en LDIF est nécessaire si vous travaillez avec slapd-config)
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <!-- Placeholder for LDAP schema diagram -->
+                                <div >
+                                    <img src="./images/Diagramme des schémas LDAP.png" 
+                         alt="Objectif de l'application" 
+                         class="w-full rounded-lg shadow-md zoom-in">
+                                </div>
+                                <p class="text-center mt-2 text-sm text-gray-600">Structure des schémas LDAP</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Étape 3 -->
+                <div id="etape3" class="tab-content p-6">
+                    <div class="step-card bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+                            Installation et Configuration Samba
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Commandes d'installation :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo apt install samba samba-common-bin smbclient -y</code>
+                                </div>
+                                
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Vérification de Samba :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>systemctl status smbd</code>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <!-- Placeholder for Samba configuration screenshot -->
+                                <div>
+                                    <img src="./images/Sortie de la commande systemctl status smbd.png" 
+                         alt="Objectif de l'application" 
+                         class="w-full rounded-lg shadow-md zoom-in">
+                                    
+                                </div>
+                                <p class="text-center mt-2 text-sm text-gray-600">Sortie de la commande systemctl status smbd</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Étape 4 -->
+                <div id="etape4" class="tab-content p-6">
+                    <div class="step-card bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3">4</span>
+                            Couplage Samba avec LDAP
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Configuration principale dans <code>/etc/samba/smb.conf</code> :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <pre><code>[global]
+    workgroup = WORKGROUP
+    security = user
+    passdb backend = ldapsam:ldap://localhost
+    ldap admin dn = cn=admin,dc=freddy,dc=org
+    ldap suffix = dc=freddy,dc=org
+    ldap user suffix = ou=users
+    ldap group suffix = ou=groups
+    ldap machine suffix = ou=machines
+    ldap passwd sync = yes
+    ldap ssl = no
+    log file = /var/log/samba/log.%m
+    max log size = 1000
+    server role = standalone server
+    obey pam restrictions = yes
+    unix password sync = yes
+    usershare allow guests = yes
+    idmap config * : backend = tdb</code></pre>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Créer les unités d'organisation (OU) :</h4>
+                                <p class="text-gray-700 mb-4">Créer un fichier <code>base.ldif</code> :</p>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <pre><code>dn: ou=users,dc=freddy,dc=org
+objectClass: organizationalUnit
+ou: users
+
+dn: ou=groups,dc=freddy,dc=org
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=machines,dc=freddy,dc=org
+objectClass: organizationalUnit
+ou: machines</code></pre>
+                                </div>
+                                
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo ldapadd -x -D cn=admin,dc=freddy,dc=org -W -f base.ldif</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Étape 5 -->
+                <div id="etape5" class="tab-content p-6">
+                    <div class="step-card bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3">5</span>
+                            Synchronisation des mots de passe Samba/LDAP
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Ajout du mot de passe Samba dans secrets.tdb :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo smbpasswd -w votre_mot_de_passe_admin</code>
+                                </div>
+                                
+                                <div class="mt-8 bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                    <h4 class="font-semibold text-blue-800 mb-2">Note importante :</h4>
+                                    <p class="text-gray-700">
+                                        Cette étape est cruciale pour permettre à Samba d'accéder à l'annuaire LDAP. Le mot de passe doit correspondre à celui du compte admin LDAP.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <!-- Placeholder for password sync diagram -->
+                                <div>
+                                    <img src="./images/Synchronisation des mots de passe.png" 
+                         alt="Objectif de l'application" 
+                         class="w-full rounded-lg shadow-md zoom-in">
+                                    
+                                </div>
+                                <p class="text-center mt-2 text-sm text-gray-600">Processus de synchronisation LDAP/Samba</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Étape 6 -->
+                <div id="etape6" class="tab-content p-6">
+                    <div class="step-card bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3">6</span>
+                            Ajout des utilisateurs LDAP/Samba
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Création de comptes :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo smbldap-useradd -a -m john</code>
+                                </div>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo smbldap-passwd john</code>
+                                </div>
+                                
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">OU Créer un fichier utilisateur.ldif :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <pre><code>dn: uid=john,ou=users,dc=freddy,dc=org
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: sambaSamAccount
+cn: john
+sn: John
+uid: john
+uidNumber: 1001
+gidNumber: 1001
+homeDirectory: /home/john
+loginShell: /bin/bash
+sambaSID: S-1-5-21-XXXXXX-XXXXXX-XXXXXX-1001
+sambaNTPassword: [mot_de_passe_nt_hash]</code></pre>
+                                </div>
+                                
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>ldapadd -x -D cn=admin,dc=freddy,dc=org -W -f utilisateur.ldif</code>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <!-- Placeholder for user management screenshot -->
+                                <div>
+                                    <img src="./images/Gestion des utilisateurs.png" 
+                         alt="Objectif de l'application" 
+                         class="w-full rounded-lg shadow-md zoom-in">
+                                    
+                                </div>
+                                <p class="text-center mt-2 text-sm text-gray-600">Structure des utilisateurs dans LDAP</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Étape 7 -->
+                <div id="etape7" class="tab-content p-6">
+                    <div class="step-card bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3">7</span>
+                            Interface de gestion via phpLDAPadmin
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Installation :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo apt install phpldapadmin -y</code>
+                                </div>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo systemctl restart apache2</code>
+                                </div>
+                                
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Configuration :</h4>
+                                <p class="text-gray-700 mb-2">Fichier <code>/etc/phpldapadmin/config.php</code></p>
+                                <p class="text-gray-700 mb-4">Remplacez :</p>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <pre><code>$servers->setValue('server','base',array('dc=freddy,dc=org'));</code></pre>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-lg font-semibold mb-3 text-gray-800">Accès via le navigateur :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>http://192.168.1.121/phpldapadmin</code>
+                                </div>
+                                
+                                <!-- Placeholder for phpLDAPadmin screenshot -->
+                                <div>
+                                    <img src="./images/Interface phpLDAPadmin.jpg" 
+                         alt="Objectif de l'application" 
+                         class="w-full rounded-lg shadow-md zoom-in">
+                                    
+                                </div>
+                                <p class="text-center mt-2 text-sm text-gray-600">Capture d'écran de l'interface web</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Étape 8 -->
+                <div id="etape8" class="tab-content p-6">
+                    <div class="step-card bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3">8</span>
+                            Vérifications finales
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                <h4 class="font-semibold text-blue-800 mb-3">Lister les utilisateurs Samba :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-3 rounded-lg mb-3 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>pdbedit -L</code>
+                                </div>
+                                <p class="text-sm text-gray-700">Affiche la liste des utilisateurs Samba avec leur SID</p>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                <h4 class="font-semibold text-blue-800 mb-3">Lister utilisateurs LDAP :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-3 rounded-lg mb-3 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>ldapsearch -x -LLL -H ldap://localhost -b ou=users,dc=freddy,dc=org</code>
+                                </div>
+                                <p class="text-sm text-gray-700">Affiche les utilisateurs dans l'OU users</p>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                <h4 class="font-semibold text-blue-800 mb-3">Vérifier Samba :</h4>
+                                <div class="code-block bg-gray-800 text-gray-100 p-3 rounded-lg mb-3 relative">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>systemctl status smbd</code>
+                                </div>
+                                <p class="text-sm text-gray-700">Vérifie que le service Samba est actif</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vérifications Section -->
+        <section id="verification" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">✅ Vérifications et Tests</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-4 flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i> Tests de connexion
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-terminal text-blue-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium">Test de connexion LDAP :</p>
+                                <div class="code-block bg-gray-800 text-gray-100 p-3 rounded-lg mt-2 relative text-sm">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>ldapwhoami -x -D "uid=john,ou=users,dc=freddy,dc=org" -W</code>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-network-wired text-blue-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium">Test de partage Samba :</p>
+                                <div class="code-block bg-gray-800 text-gray-100 p-3 rounded-lg mt-2 relative text-sm">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>smbclient //localhost/john -U john</code>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-4 flex items-center">
+                        <i class="fas fa-search text-yellow-500 mr-3"></i> Vérification des logs
+                    </h3>
+                    <p class="mb-4 text-gray-700">
+                        Les logs sont essentiels pour diagnostiquer les problèmes. Voici les fichiers à surveiller :
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-file-alt text-blue-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium">Logs Samba :</p>
+                                <code class="text-sm bg-gray-100 px-2 py-1 rounded">/var/log/samba/log.smbd</code>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-file-alt text-blue-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium">Logs LDAP :</p>
+                                <code class="text-sm bg-gray-100 px-2 py-1 rounded">/var/log/syslog | grep slapd</code>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-file-alt text-blue-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium">Commande utile :</p>
+                                <div class="code-block bg-gray-800 text-gray-100 p-3 rounded-lg mt-2 relative text-sm">
+                                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs">
+                                        <i class="fas fa-copy mr-1"></i> Copier
+                                    </button>
+                                    <code>sudo tail -f /var/log/samba/log.smbd</code>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conseils Section -->
+        <section id="conseils" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">📢 Conseils Pratiques</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <div class="text-yellow-500 text-3xl mb-4">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Réinitialisation mot de passe</h3>
+                    <p class="text-gray-700 mb-4">
+                        Pour réinitialiser le mot de passe admin Samba :
+                    </p>
+                    <div class="code-block bg-gray-800 text-gray-100 p-3 rounded-lg relative text-sm">
+                        <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs">
+                            <i class="fas fa-copy mr-1"></i> Copier
+                        </button>
+                        <code>sudo smbpasswd -w nouveau_mot_de_passe</code>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <div class="text-red-500 text-3xl mb-4">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Erreur pdb backend</h3>
+                    <p class="text-gray-700 mb-4">
+                        Si vous rencontrez l'erreur "pdb backend ldapsam did not correctly init", vérifiez :
+                    </p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                        <li>Fichier secrets.tdb</li>
+                        <li>Mot de passe smbpasswd -w</li>
+                        <li>Cohérence du DN LDAP</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <div class="text-green-500 text-3xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Sécurité</h3>
+                    <p class="text-gray-700 mb-4">
+                        Bonnes pratiques de sécurité :
+                    </p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                        <li>Restreindre l'accès à phpLDAPadmin</li>
+                        <li>Configurer TLS pour LDAP</li>
+                        <li>Mettre à jour régulièrement les paquets</li>
+                        <li>Utiliser des mots de passe forts</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="bg-blue-800 text-white rounded-xl p-8 md:p-12 mb-20">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6">Projet Réussi !</h2>
+                <p class="text-xl mb-8">
+                    Vous avez maintenant une infrastructure d'authentification centralisée fonctionnelle avec OpenLDAP et Samba sous Ubuntu 22.04. Cette solution permet une gestion unifiée des utilisateurs et des accès aux ressources partagées.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="../index.html" class="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition shadow-lg">
+                        Retour aux projets
+                    </a>
+                    <a href="#etapes" class="border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-800 transition">
+                        Voir les étapes
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i class="fab fa-ubuntu text-2xl"></i>
+                        <span class="text-lg font-semibold">Projet Authentification Centralisée</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">OpenLDAP + Samba sous Ubuntu 22.04</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2023 Projet Ubuntu - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-700 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition opacity-0 invisible hover:bg-blue-600">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(b => b.classList.remove('border-blue-600', 'text-blue-700'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                btn.classList.add('border-blue-600', 'text-blue-700');
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Set first tab as active by default
+        if (tabBtns.length > 0) {
+            tabBtns[0].classList.add('border-blue-600', 'text-blue-700');
+        }
+        
+        // Copy code blocks
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const codeBlock = btn.parentElement;
+                const code = codeBlock.querySelector('code').innerText;
+                
+                navigator.clipboard.writeText(code).then(() => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check mr-1"></i> Copié';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                    }, 2000);
+                });
+            });
+        });
+        
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
